@@ -1,8 +1,10 @@
-package com.acomp.newsapp;
+package com.acomp.newsapp.ui.detail;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.acomp.newsapp.R;
 
 public class DetailedActivity extends AppCompatActivity {
 
