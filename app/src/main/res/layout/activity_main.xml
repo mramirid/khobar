@@ -33,7 +33,7 @@
         android:layout_height="170dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/rv_regular"
-        tools:listitem="@layout/item_headline"/>
+        tools:listitem="@layout/news_headline"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_regular"
@@ -43,5 +43,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_regular"/>
+        tools:listitem="@layout/news_regular"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
