@@ -51,7 +51,7 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
 		holder.tvSource.setText(headlineNews.get(position).getSource());
 		GlideApp.with(holder.itemView.getContext())
 				.load(headlineNews.get(position).getUrlToImage())
-				.apply(RequestOptions.placeholderOf(R.drawable.loading_indicator).error(R.drawable.ic_broken_image_black_24dp))
+				.apply(RequestOptions.placeholderOf(R.drawable.ic_broken_image_black_24dp).error(R.drawable.ic_broken_image_black_24dp))
 				.into(holder.imgPoster);
 
 		// Click listener

@@ -52,7 +52,7 @@ public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.
 		holder.tvSource.setText(regularNews.get(position).getSource());
 		GlideApp.with(holder.itemView.getContext())
 				.load(regularNews.get(position).getUrlToImage())
-				.apply(RequestOptions.placeholderOf(R.drawable.loading_indicator).error(R.drawable.ic_broken_image_black_24dp))
+				.apply(RequestOptions.placeholderOf(R.drawable.ic_broken_image_black_24dp).error(R.drawable.ic_broken_image_black_24dp))
 				.apply(new RequestOptions().transform(new RoundedCorners(40)))
 				.into(holder.imgPoster);
 
