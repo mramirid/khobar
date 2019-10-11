@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/img_poster"
-            android:layout_width="105dp"
+            android:layout_width="120dp"
             android:layout_height="120dp"
             android:scaleType="fitXY"
             tools:background="@color/colorAccent"
