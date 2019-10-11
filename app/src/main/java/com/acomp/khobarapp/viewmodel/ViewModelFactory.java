@@ -8,6 +8,11 @@ import com.acomp.khobarapp.data.source.NewsRepository;
 import com.acomp.khobarapp.di.Injection;
 import com.acomp.khobarapp.ui.home.HomeViewModel;
 
+/*
+*
+* Kelas ini dibuat agar kita bisa passing argument ke dalam HomeViewModel
+*
+* */
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
 	private static volatile ViewModelFactory INSTANCE;
