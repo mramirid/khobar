@@ -2,6 +2,10 @@ package com.acomp.newsapp.data.entity;
 
 public class NewsEntity {
 
+	// Penentu tipe berita (headline news / regular news)
+	public static final String TYPE_HEADLINE_NEWS = "headline_news";
+	public static final String TYPE_REGULAR_NEWS = "regular_news";
+
 	private String newsType, title, description, source, urlArticle, urlToImage, timeStamp, content;
 
 	public NewsEntity(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
