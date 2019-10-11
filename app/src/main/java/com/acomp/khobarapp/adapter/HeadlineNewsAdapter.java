@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.data.entity.NewsEntity;
 import com.acomp.khobarapp.utils.GlideApp;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
@@ -53,7 +52,6 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
 		GlideApp.with(holder.itemView.getContext())
 				.load(headlineNews.get(position).getUrlToImage())
 				.apply(RequestOptions.placeholderOf(R.drawable.loading_indicator).error(R.drawable.ic_broken_image_black_24dp))
-				.apply(new RequestOptions().transform(new RoundedCorners(40)))
 				.into(holder.imgPoster);
 
 		// Click listener
