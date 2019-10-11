@@ -2,9 +2,10 @@ package com.acomp.newsapp.data.entity;
 
 public class NewsEntity {
 
-	private String title, description, source, urlArticle, urlToImage, timeStamp, content;
+	private String newsType, title, description, source, urlArticle, urlToImage, timeStamp, content;
 
-	public NewsEntity(String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+	public NewsEntity(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+		this.newsType = newsType;
 		this.title = title;
 		this.description = description;
 		this.source = source;
@@ -12,6 +13,14 @@ public class NewsEntity {
 		this.urlToImage = urlToImage;
 		this.timeStamp = timeStamp;
 		this.content = content;
+	}
+
+	public String getNewsType() {
+		return newsType;
+	}
+
+	public void setNewsType(String newsType) {
+		this.newsType = newsType;
 	}
 
 	public String getTitle() {

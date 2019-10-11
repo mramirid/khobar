@@ -7,9 +7,10 @@ package com.acomp.newsapp.data.source.remote.response;
 * */
 public class NewsResponse {
 
-	private String title, description, source, urlArticle, urlToImage, timeStamp, content;
+	private String newsType, title, description, source, urlArticle, urlToImage, timeStamp, content;
 
-	public NewsResponse(String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+	public NewsResponse(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+		this.newsType = newsType;
 		this.title = title;
 		this.description = description;
 		this.source = source;
@@ -17,6 +18,14 @@ public class NewsResponse {
 		this.urlToImage = urlToImage;
 		this.timeStamp = timeStamp;
 		this.content = content;
+	}
+
+	public String getNewsType() {
+		return newsType;
+	}
+
+	public void setNewsType(String newsType) {
+		this.newsType = newsType;
 	}
 
 	public String getTitle() {
