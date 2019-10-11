@@ -66,7 +66,7 @@
                     android:layout_marginTop="12dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
-                    android:text="Contoh Berita"
+                    android:text="@string/news_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -83,7 +83,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimary"
-                        android:text="12-06-1999"
+                        android:text="@string/example_date"
                         android:layout_width="0dp"
                         android:layout_weight="9"
                         android:layout_height="wrap_content" />
@@ -94,7 +94,7 @@
                     android:textSize="13sp"
                     android:lineSpacingMultiplier="1.5"
                     android:layout_marginTop="12dp"
-                    android:text="Jadi begini"
+                    android:text="@string/example_news"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
