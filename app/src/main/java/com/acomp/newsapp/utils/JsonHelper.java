@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
+import static com.acomp.newsapp.data.entity.NewsEntity.TYPE_HEADLINE_NEWS;
+import static com.acomp.newsapp.data.entity.NewsEntity.TYPE_REGULAR_NEWS;
+
 /*
  *
  * Kelas ini untuk melakukan request data ke API (hasilnya dalam bentuk JSON)
@@ -29,7 +32,7 @@ public class JsonHelper {
 		new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-				ArrayList<NewsResponse> regularNewsResponses = parseJsonToArrayList(new String(responseBody));
+				ArrayList<NewsResponse> regularNewsResponses = parseJsonToArrayList(new String(responseBody), TYPE_REGULAR_NEWS);
 				callback.onNewsReceived(regularNewsResponses);
 			}
 
@@ -46,7 +49,7 @@ public class JsonHelper {
 		new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-				ArrayList<NewsResponse> headlineNewsResponses = parseJsonToArrayList(new String(responseBody));
+				ArrayList<NewsResponse> headlineNewsResponses = parseJsonToArrayList(new String(responseBody), TYPE_HEADLINE_NEWS);
 				callback.onNewsReceived(headlineNewsResponses);
 			}
 
@@ -58,7 +61,7 @@ public class JsonHelper {
 		});
 	}
 
-	private ArrayList<NewsResponse> parseJsonToArrayList(String responseJson) {
+	private ArrayList<NewsResponse> parseJsonToArrayList(String responseJson, String newsType) {
 		ArrayList<NewsResponse> newsResponses = new ArrayList<>();
 
 		try {
@@ -76,7 +79,7 @@ public class JsonHelper {
 				String timeStamp = responseNews.getString("publishedAt").substring(0, 11);
 				String content = responseNews.getString("content");
 
-				newsResponses.add(new NewsResponse(title, description, source, urlArticle, urlToImage, timeStamp, content));
+				newsResponses.add(new NewsResponse(newsType, title, description, source, urlArticle, urlToImage, timeStamp, content));
 			}
 		} catch (JSONException e) {
 			Log.e(this.getClass().getSimpleName(), "parseJsonToArrayList: parsing failed");
