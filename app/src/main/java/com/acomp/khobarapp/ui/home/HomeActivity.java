@@ -1,10 +1,10 @@
-package com.acomp.newsapp.ui.home;
+package com.acomp.khobarapp.ui.home;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.acomp.newsapp.R;
+import com.acomp.khobarapp.R;
 
 public class HomeActivity extends AppCompatActivity {
 

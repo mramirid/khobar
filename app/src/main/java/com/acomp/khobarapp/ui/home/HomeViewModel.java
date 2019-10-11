@@ -1,10 +1,10 @@
-package com.acomp.newsapp.ui.home;
+package com.acomp.khobarapp.ui.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.acomp.newsapp.data.entity.NewsEntity;
-import com.acomp.newsapp.data.source.NewsRepository;
+import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.NewsRepository;
 
 import java.util.ArrayList;
 

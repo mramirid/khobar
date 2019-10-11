@@ -1,15 +1,14 @@
-package com.acomp.newsapp.data.source.remote.response;
+package com.acomp.khobarapp.data.entity;
 
-/*
-*
-* Kelas ini untuk objek penampung data-data hasil request API
-*
-* */
-public class NewsResponse {
+public class NewsEntity {
+
+	// Penentu tipe berita (headline news / regular news)
+	public static final String TYPE_HEADLINE_NEWS = "headline_news";
+	public static final String TYPE_REGULAR_NEWS = "regular_news";
 
 	private String newsType, title, description, source, urlArticle, urlToImage, timeStamp, content;
 
-	public NewsResponse(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+	public NewsEntity(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
 		this.newsType = newsType;
 		this.title = title;
 		this.description = description;

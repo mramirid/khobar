@@ -1,4 +1,4 @@
-package com.acomp.newsapp.utils;
+package com.acomp.khobarapp.utils;
 
 import android.graphics.Rect;
 import android.view.View;

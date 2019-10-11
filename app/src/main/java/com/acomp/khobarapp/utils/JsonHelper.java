@@ -1,10 +1,10 @@
-package com.acomp.newsapp.utils;
+package com.acomp.khobarapp.utils;
 
 import android.util.Log;
 
-import com.acomp.newsapp.BuildConfig;
-import com.acomp.newsapp.data.source.remote.RemoteRepository.LoadNewsCallback;
-import com.acomp.newsapp.data.source.remote.response.NewsResponse;
+import com.acomp.khobarapp.BuildConfig;
+import com.acomp.khobarapp.data.source.remote.RemoteRepository.LoadNewsCallback;
+import com.acomp.khobarapp.data.source.remote.response.NewsResponse;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-import static com.acomp.newsapp.data.entity.NewsEntity.TYPE_HEADLINE_NEWS;
-import static com.acomp.newsapp.data.entity.NewsEntity.TYPE_REGULAR_NEWS;
+import static com.acomp.khobarapp.data.entity.NewsEntity.TYPE_HEADLINE_NEWS;
+import static com.acomp.khobarapp.data.entity.NewsEntity.TYPE_REGULAR_NEWS;
 
 /*
  *

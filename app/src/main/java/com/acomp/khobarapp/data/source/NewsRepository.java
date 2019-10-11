@@ -1,18 +1,18 @@
-package com.acomp.newsapp.data.source;
+package com.acomp.khobarapp.data.source;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.acomp.newsapp.data.entity.NewsEntity;
-import com.acomp.newsapp.data.source.remote.RemoteRepository;
-import com.acomp.newsapp.data.source.remote.response.NewsResponse;
+import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.remote.RemoteRepository;
+import com.acomp.khobarapp.data.source.remote.response.NewsResponse;
 
 import java.util.ArrayList;
 
-import static com.acomp.newsapp.data.entity.NewsEntity.TYPE_HEADLINE_NEWS;
-import static com.acomp.newsapp.data.entity.NewsEntity.TYPE_REGULAR_NEWS;
+import static com.acomp.khobarapp.data.entity.NewsEntity.TYPE_HEADLINE_NEWS;
+import static com.acomp.khobarapp.data.entity.NewsEntity.TYPE_REGULAR_NEWS;
 
 /*
  *

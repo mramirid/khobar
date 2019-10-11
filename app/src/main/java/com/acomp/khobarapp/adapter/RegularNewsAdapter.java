@@ -1,4 +1,4 @@
-package com.acomp.newsapp.adapter;
+package com.acomp.khobarapp.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -10,48 +10,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.acomp.newsapp.R;
-import com.acomp.newsapp.data.entity.NewsEntity;
-import com.acomp.newsapp.utils.GlideApp;
+import com.acomp.khobarapp.R;
+import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.utils.GlideApp;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
 /*
-*
-* Adapter untuk recyclerview dari headline news
-*
-* */
-public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapter.NewsViewHolder> {
+ *
+ * Adapter untuk recyclerview dari regular news
+ *
+ * */
+public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.NewsViewHolder> {
 
 	private final Activity activity;
-	private ArrayList<NewsEntity> headlineNews = new ArrayList<>();
+	private ArrayList<NewsEntity> regularNews = new ArrayList<>();
 
-	public HeadlineNewsAdapter(Activity activity) {
+	public RegularNewsAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setHeadlineNews(ArrayList<NewsEntity> headlineNews) {
-		if (headlineNews != null) {
-			this.headlineNews.clear();
-			this.headlineNews.addAll(headlineNews);
+	public void setRegularNews(ArrayList<NewsEntity> regularNews) {
+		if (regularNews != null) {
+			this.regularNews.clear();
+			this.regularNews.addAll(regularNews);
 		}
 	}
 
 	@NonNull
 	@Override
 	public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_headline, parent, false);
+		View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_regular, parent, false);
 		return new NewsViewHolder(rootView);
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-		holder.tvTitle.setText(headlineNews.get(position).getTitle());
-		holder.tvSource.setText(headlineNews.get(position).getSource());
+		holder.tvTitle.setText(regularNews.get(position).getTitle());
+		holder.tvSource.setText(regularNews.get(position).getSource());
 		GlideApp.with(holder.itemView.getContext())
-				.load(headlineNews.get(position).getUrlToImage())
+				.load(regularNews.get(position).getUrlToImage())
 				.apply(RequestOptions.placeholderOf(R.drawable.loading_indicator).error(R.drawable.ic_broken_image_black_24dp))
 				.apply(new RequestOptions().transform(new RoundedCorners(40)))
 				.into(holder.imgPoster);
@@ -64,7 +64,7 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
 
 	@Override
 	public int getItemCount() {
-		return headlineNews.size();
+		return regularNews.size();
 	}
 
 	class NewsViewHolder extends RecyclerView.ViewHolder {

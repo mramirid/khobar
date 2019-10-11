@@ -1,8 +1,8 @@
-package com.acomp.newsapp.data.source;
+package com.acomp.khobarapp.data.source;
 
 import androidx.lifecycle.LiveData;
 
-import com.acomp.newsapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.entity.NewsEntity;
 
 import java.util.ArrayList;
 

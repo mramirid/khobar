@@ -1,7 +1,7 @@
-package com.acomp.newsapp.data.source.remote;
+package com.acomp.khobarapp.data.source.remote;
 
-import com.acomp.newsapp.data.source.remote.response.NewsResponse;
-import com.acomp.newsapp.utils.JsonHelper;
+import com.acomp.khobarapp.data.source.remote.response.NewsResponse;
+import com.acomp.khobarapp.utils.JsonHelper;
 
 import java.util.ArrayList;
 

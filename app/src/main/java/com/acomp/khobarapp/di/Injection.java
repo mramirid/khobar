@@ -1,8 +1,8 @@
-package com.acomp.newsapp.di;
+package com.acomp.khobarapp.di;
 
-import com.acomp.newsapp.data.source.NewsRepository;
-import com.acomp.newsapp.data.source.remote.RemoteRepository;
-import com.acomp.newsapp.utils.JsonHelper;
+import com.acomp.khobarapp.data.source.NewsRepository;
+import com.acomp.khobarapp.data.source.remote.RemoteRepository;
+import com.acomp.khobarapp.utils.JsonHelper;
 
 /*
  *
