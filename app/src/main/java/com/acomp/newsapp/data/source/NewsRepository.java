@@ -133,7 +133,7 @@ public class NewsRepository implements NewsDataSource {
 
 				@Override
 				public void onDataNotAvailable() {
-					Log.e(this.getClass().getSimpleName(), "getNews -> onDataNotAvailable: request failed");
+					Log.e(this.getClass().getSimpleName(), "getHeadlineNews -> onDataNotAvailable: request failed");
 				}
 			});
 		} else if (newsType.equals(TYPE_REGULAR_NEWS)) {
@@ -160,7 +160,7 @@ public class NewsRepository implements NewsDataSource {
 
 				@Override
 				public void onDataNotAvailable() {
-					Log.e(this.getClass().getSimpleName(), "getNews -> onDataNotAvailable: request failed");
+					Log.e(this.getClass().getSimpleName(), "getHeadlineNews -> onDataNotAvailable: request failed");
 				}
 			});
 		}
