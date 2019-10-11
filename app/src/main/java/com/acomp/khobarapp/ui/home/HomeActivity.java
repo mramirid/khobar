@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.adapter.HeadlineNewsAdapter;
 import com.acomp.khobarapp.adapter.RegularNewsAdapter;
+import com.acomp.khobarapp.utils.SpacesItemDecoration;
 import com.acomp.khobarapp.viewmodel.ViewModelFactory;
 
 public class HomeActivity extends AppCompatActivity {
@@ -51,6 +52,8 @@ public class HomeActivity extends AppCompatActivity {
 		rvHeadlineNews.setHasFixedSize(true);
 		rvHeadlineNews.setAdapter(headlineNewsAdapter);
 
+		int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.rv_item_margin);
+		rvRegularNews.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 		rvRegularNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 		rvRegularNews.setHasFixedSize(true);
 		rvRegularNews.setAdapter(regularNewsAdapter);
