@@ -1,5 +1,10 @@
 package com.acomp.newsapp.data.source.remote.response;
 
+/*
+*
+* Kelas ini untuk objek penampung data-data hasil request API
+*
+* */
 public class NewsResponse {
 
 	private String title, description, source, urlArticle, urlToImage, timeStamp, content;

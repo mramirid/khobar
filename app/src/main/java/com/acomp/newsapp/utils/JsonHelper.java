@@ -16,6 +16,12 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
+/*
+ *
+ * Kelas ini untuk melakukan request data ke API (hasilnya dalam bentuk JSON)
+ * Lalu memparsing Json-nya dan menyimpan data-datanya ke dalam list objek POJO (ArrayList NewsResponse)
+ *
+ * */
 public class JsonHelper {
 
 	public void loadRegularNews(LoadNewsCallback callback) {

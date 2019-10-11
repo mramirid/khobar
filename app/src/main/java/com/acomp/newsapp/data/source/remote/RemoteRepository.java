@@ -5,6 +5,11 @@ import com.acomp.newsapp.utils.JsonHelper;
 
 import java.util.ArrayList;
 
+/*
+ *
+ * Kelas ini untuk melakukan pemanggilan ke remote data source
+ *
+ * */
 public class RemoteRepository {
 
 	private static RemoteRepository INSTANCE;
