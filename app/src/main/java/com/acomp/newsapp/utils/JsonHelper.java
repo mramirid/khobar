@@ -18,35 +18,35 @@ import cz.msebera.android.httpclient.Header;
 
 public class JsonHelper {
 
-	public void loadRegularNews(LoadNewsCallback loadNewsCallback) {
+	public void loadRegularNews(LoadNewsCallback callback) {
 		String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + BuildConfig.API_KEY;
 		new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				ArrayList<NewsResponse> regularNewsResponses = parseJsonToArrayList(new String(responseBody));
-				loadNewsCallback.onNewsReceived(regularNewsResponses);
+				callback.onNewsReceived(regularNewsResponses);
 			}
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-				loadNewsCallback.onDataNotAvailable();
+				callback.onDataNotAvailable();
 				Log.e(this.getClass().getSimpleName(), "loadRegularNews -> onFailure: request failed");
 			}
 		});
 	}
 
-	public void loadHeadlineNews(LoadNewsCallback loadNewsCallback) {
+	public void loadHeadlineNews(LoadNewsCallback callback) {
 		String url = "https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=" + BuildConfig.API_KEY;
 		new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				ArrayList<NewsResponse> headlineNewsResponses = parseJsonToArrayList(new String(responseBody));
-				loadNewsCallback.onNewsReceived(headlineNewsResponses);
+				callback.onNewsReceived(headlineNewsResponses);
 			}
 
 			@Override
 			public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-				loadNewsCallback.onDataNotAvailable();
+				callback.onDataNotAvailable();
 				Log.e(this.getClass().getSimpleName(), "loadHeadlineNews -> onFailure: request failed");
 			}
 		});
