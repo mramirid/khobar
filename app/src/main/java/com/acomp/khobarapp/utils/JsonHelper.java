@@ -76,7 +76,7 @@ public class JsonHelper {
 				String source = responseNews.getJSONObject("source").getString("name");
 				String urlArticle = responseNews.getString("url");
 				String urlToImage = responseNews.getString("urlToImage");
-				String timeStamp = responseNews.getString("publishedAt").substring(0, 11);
+				String timeStamp = responseNews.getString("publishedAt").substring(0, 10);
 				String content = responseNews.getString("content");
 
 				newsResponses.add(new NewsResponse(newsType, title, description, source, urlArticle, urlToImage, timeStamp, content));
