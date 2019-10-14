@@ -1,13 +1,10 @@
 package com.acomp.khobarapp.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,11 +17,7 @@ import com.acomp.khobarapp.viewmodel.ViewModelFactory;
 
 public class HomeActivity extends AppCompatActivity {
 
-	private RecyclerView rvHeadlineNews, rvRegularNews;
 	private ProgressBar progressBar;
-	private Toolbar toolbar;
-	private View splashBackground;
-	private ImageView imgSplash;
 
 	private int recyclerViewsLoadedCount = 0;
 
@@ -33,15 +26,10 @@ public class HomeActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		rvHeadlineNews = findViewById(R.id.rv_headline);
-		rvRegularNews = findViewById(R.id.rv_regular);
+		RecyclerView rvHeadlineNews = findViewById(R.id.rv_headline);
+		RecyclerView rvRegularNews = findViewById(R.id.rv_regular);
 		progressBar = findViewById(R.id.progress_bar);
-		toolbar = findViewById(R.id.toolbar);
-		imgSplash = findViewById(R.id.img_splash);
-		splashBackground = findViewById(R.id.splash_background);
 		progressBar.setVisibility(View.VISIBLE);
-
-		showSplashScreen();
 
 		HeadlineNewsAdapter headlineNewsAdapter = new HeadlineNewsAdapter(this);
 		RegularNewsAdapter regularNewsAdapter = new RegularNewsAdapter(this);
@@ -68,22 +56,6 @@ public class HomeActivity extends AppCompatActivity {
 		rvRegularNews.setLayoutManager(new LinearLayoutManager(getBaseContext()));
 		rvRegularNews.setHasFixedSize(true);
 		rvRegularNews.setAdapter(regularNewsAdapter);
-	}
-
-	private void showSplashScreen() {
-		toolbar.setVisibility(View.GONE);
-		splashBackground.setVisibility(View.VISIBLE);
-		imgSplash.setVisibility(View.VISIBLE);
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			Log.e(this.getClass().getSimpleName(), "showSplashScreen: " + e.getMessage());
-		}
-
-		toolbar.setVisibility(View.VISIBLE);
-		splashBackground.setVisibility(View.GONE);
-		imgSplash.setVisibility(View.GONE);
 	}
 
 	private HomeViewModel obtainViewModel(AppCompatActivity activity) {
