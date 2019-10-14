@@ -4,7 +4,7 @@
     <string name="news_name">Sunu Ilham Pradika mahasiswa UPN Veteran Jawa Timur</string>
     <string name="example_date">12–06–1999</string>
     <string name="example_news">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non molestie metus, a accumsan quam. Donec non faucibus mi. Quisque sed ullamcorper mauris, a tempus leo. Sed mattis mi ut quam accumsan laoreet.</string>
-    <string name="view_acticle">View acticle</string>
+    <string name="view_article">View article</string>
     <string name="description">Description</string>
     <string name="content">Content</string>
 </resources>
