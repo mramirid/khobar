@@ -1,6 +1,7 @@
 package com.acomp.khobarapp.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
 import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.ui.detail.DetailedActivity;
 import com.acomp.khobarapp.utils.GlideApp;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -58,7 +60,10 @@ public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.
 
 		// Click listener
 		holder.itemView.setOnClickListener(view -> {
-			// Nanti
+			Intent moveToDetailedIntent = new Intent(activity, DetailedActivity.class);
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, regularNews.get(position).getUrlArticle());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, regularNews.get(position).getNewsType());
+			activity.startActivity(moveToDetailedIntent);
 		});
 	}
 

@@ -3,8 +3,8 @@ package com.acomp.khobarapp.data.entity;
 public class NewsEntity {
 
 	// Penentu tipe berita (headline news / regular news)
-	public static final String TYPE_HEADLINE_NEWS = "headline_news";
-	public static final String TYPE_REGULAR_NEWS = "regular_news";
+	public static final String TYPE_HEADLINE_NEWS = "Headline News";
+	public static final String TYPE_REGULAR_NEWS = "Regular News";
 
 	private String newsType, title, description, source, urlArticle, urlToImage, timeStamp, content;
 
