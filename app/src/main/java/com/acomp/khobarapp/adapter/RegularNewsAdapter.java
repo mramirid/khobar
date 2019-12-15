@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
-import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.local.entity.NewsEntity;
 import com.acomp.khobarapp.ui.detail.DetailedActivity;
 import com.acomp.khobarapp.utils.GlideApp;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;

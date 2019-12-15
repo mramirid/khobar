@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.acomp.khobarapp.R;
-import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.local.entity.NewsEntity;
 import com.acomp.khobarapp.utils.GlideApp;
 import com.acomp.khobarapp.viewmodel.ViewModelFactory;
 import com.bumptech.glide.request.RequestOptions;

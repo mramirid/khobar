@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-import static com.acomp.khobarapp.data.entity.NewsEntity.TYPE_HEADLINE_NEWS;
-import static com.acomp.khobarapp.data.entity.NewsEntity.TYPE_REGULAR_NEWS;
+import static com.acomp.khobarapp.data.source.local.entity.NewsEntity.TYPE_HEADLINE_NEWS;
+import static com.acomp.khobarapp.data.source.local.entity.NewsEntity.TYPE_REGULAR_NEWS;
 
 /*
  *

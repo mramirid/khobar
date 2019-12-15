@@ -3,7 +3,7 @@ package com.acomp.khobarapp.ui.home;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.local.entity.NewsEntity;
 import com.acomp.khobarapp.data.source.NewsRepository;
 
 import java.util.ArrayList;
