@@ -1,10 +1,14 @@
 package com.acomp.khobarapp.ui.home;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +29,12 @@ public class HomeActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		
+		if (getSupportActionBar() != null)
+			getSupportActionBar().setTitle("");
 
 		RecyclerView rvHeadlineNews = findViewById(R.id.rv_headline);
 		RecyclerView rvRegularNews = findViewById(R.id.rv_regular);
@@ -67,5 +77,17 @@ public class HomeActivity extends AppCompatActivity {
 		// Progress bar akan dihilangkan dari layar apabila kedua recyclerview telah diload
 		if (++recyclerViewsLoadedCount == 2)
 			progressBar.setVisibility(View.GONE);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		// Request ke API
+		return super.onOptionsItemSelected(item);
 	}
 }
