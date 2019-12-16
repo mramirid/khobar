@@ -54,7 +54,4 @@ dependencies {
         exclude group: "androidx"
     }
     annotationProcessor "com.github.bumptech.glide:compiler:4.9.0"
-
-    // Depedencies for EasySplashScreen
-    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
 }
