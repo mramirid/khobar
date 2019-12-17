@@ -1,14 +1,45 @@
-package com.acomp.khobarapp.data.entity;
+package com.acomp.khobarapp.data.source.local.entity;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "news")
 public class NewsEntity {
 
 	// Penentu tipe berita (headline news / regular news)
 	public static final String TYPE_HEADLINE_NEWS = "Headline News";
 	public static final String TYPE_REGULAR_NEWS = "Regular News";
 
-	private String newsType, title, description, source, urlArticle, urlToImage, timeStamp, content;
+	@ColumnInfo(name = "news_type")
+	private String newsType;
 
-	public NewsEntity(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+	@ColumnInfo(name = "title")
+	private String title;
+
+	@ColumnInfo(name = "description")
+	private String description;
+
+	@ColumnInfo(name = "source")
+	private String source;
+
+	@NonNull
+	@PrimaryKey
+	@ColumnInfo(name = "url_article")
+	private String urlArticle;
+
+	@ColumnInfo(name = "url_image")
+	private String urlToImage;
+
+	@ColumnInfo(name = "time_stamp")
+	private String timeStamp;
+
+	@ColumnInfo(name = "content")
+	private String content;
+
+	public NewsEntity(String newsType, String title, String description, String source,
+					  @NonNull String urlArticle, String urlToImage, String timeStamp, String content) {
 		this.newsType = newsType;
 		this.title = title;
 		this.description = description;
@@ -23,24 +54,12 @@ public class NewsEntity {
 		return newsType;
 	}
 
-	public void setNewsType(String newsType) {
-		this.newsType = newsType;
-	}
-
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getSource() {
@@ -51,35 +70,20 @@ public class NewsEntity {
 		this.source = source;
 	}
 
+	@NonNull
 	public String getUrlArticle() {
 		return urlArticle;
-	}
-
-	public void setUrlArticle(String urlArticle) {
-		this.urlArticle = urlArticle;
 	}
 
 	public String getUrlToImage() {
 		return urlToImage;
 	}
 
-	public void setUrlToImage(String urlToImage) {
-		this.urlToImage = urlToImage;
-	}
-
 	public String getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
-	}
-
 	public String getContent() {
 		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 }

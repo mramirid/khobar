@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.acomp.khobarapp.R;
-import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.local.entity.NewsEntity;
 import com.acomp.khobarapp.utils.GlideApp;
 import com.acomp.khobarapp.viewmodel.ViewModelFactory;
 import com.bumptech.glide.request.RequestOptions;
@@ -40,9 +41,9 @@ public class DetailedActivity extends AppCompatActivity {
 		View viewLoading = findViewById(R.id.view_loading);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 
-		DetailedViewModel viewModel = obtainViewModel(this);
+		DetailedViewModel detailedViewModel = obtainViewModel(this);
 
-		String newsUrl = null, newsType = null;
+		String newsUrl = null, newsType;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			newsUrl = extras.getString(EXTRA_NEWS_URL);
@@ -50,15 +51,29 @@ public class DetailedActivity extends AppCompatActivity {
 
 			if (newsUrl != null && newsType != null) {
 				toolbar.setTitle(newsType);
-				viewModel.setNewsUrl(newsUrl);
-				viewModel.setNewsType(newsType);
-				viewLoading.setVisibility(View.VISIBLE);
+				detailedViewModel.setNewsUrl(newsUrl);
 			}
 		}
 
-		viewModel.getNews().observe(this, newsEntity -> {
-			viewLoading.setVisibility(View.GONE);
-			populateDetailedActivity(newsEntity);
+		detailedViewModel.news.observe(this, newsEntityResource -> {
+			if (newsEntityResource != null) {
+				switch (newsEntityResource.status) {
+					case LOADING:
+						viewLoading.setVisibility(View.VISIBLE);
+						break;
+					case SUCCESS:
+						viewLoading.setVisibility(View.GONE);
+						if (newsEntityResource.data != null)
+							populateDetailedActivity(newsEntityResource.data);
+						else
+							Toast.makeText(this, "News data is empty!", Toast.LENGTH_SHORT).show();
+						break;
+					case ERROR:
+						viewLoading.setVisibility(View.GONE);
+						Toast.makeText(this, "Cannot get news data", Toast.LENGTH_SHORT).show();
+						break;
+				}
+			}
 		});
 
 		String finalNewsUrl = newsUrl;
@@ -92,7 +107,7 @@ public class DetailedActivity extends AppCompatActivity {
 	}
 
 	private DetailedViewModel obtainViewModel(AppCompatActivity activity) {
-		ViewModelFactory factory = ViewModelFactory.getInstance();
+		ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
 		return ViewModelProviders.of(activity, factory).get(DetailedViewModel.class);
 	}
 }

@@ -1,4 +1,4 @@
-package com.acomp.khobarapp.adapter;
+package com.acomp.khobarapp.ui.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,62 +12,71 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
-import com.acomp.khobarapp.data.entity.NewsEntity;
+import com.acomp.khobarapp.data.source.local.entity.NewsEntity;
 import com.acomp.khobarapp.ui.detail.DetailedActivity;
 import com.acomp.khobarapp.utils.GlideApp;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
-*
-* Adapter untuk recyclerview dari headline news
-*
-* */
-public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapter.NewsViewHolder> {
+ *
+ * Adapter untuk recyclerview dari regular news
+ *
+ * */
+public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.NewsViewHolder> {
 
 	private final Activity activity;
-	private ArrayList<NewsEntity> headlineNews = new ArrayList<>();
+	private List<NewsEntity> regularNewsList = new ArrayList<>();
 
-	public HeadlineNewsAdapter(Activity activity) {
+	public RegularNewsAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setHeadlineNews(ArrayList<NewsEntity> headlineNews) {
-		if (headlineNews != null) {
-			this.headlineNews.clear();
-			this.headlineNews.addAll(headlineNews);
+	public void setRegularNewsList(List<NewsEntity> regularNewsList) {
+		if (regularNewsList != null) {
+			this.regularNewsList.clear();
+			this.regularNewsList.addAll(regularNewsList);
+			notifyDataSetChanged();
 		}
+	}
+
+	public void clear() {
+		this.regularNewsList.clear();
+		notifyDataSetChanged();
 	}
 
 	@NonNull
 	@Override
 	public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_headline, parent, false);
+		View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_regular, parent, false);
 		return new NewsViewHolder(rootView);
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-		holder.tvTitle.setText(headlineNews.get(position).getTitle());
-		holder.tvSource.setText(headlineNews.get(position).getSource());
+		holder.tvTitle.setText(regularNewsList.get(position).getTitle());
+		holder.tvSource.setText(regularNewsList.get(position).getSource());
 		GlideApp.with(holder.itemView.getContext())
-				.load(headlineNews.get(position).getUrlToImage())
+				.load(regularNewsList.get(position).getUrlToImage())
 				.apply(RequestOptions.placeholderOf(R.drawable.ic_broken_image_black_24dp).error(R.drawable.ic_broken_image_black_24dp))
+				.apply(new RequestOptions().transform(new RoundedCorners(40)))
 				.into(holder.imgPoster);
 
 		// Click listener
 		holder.itemView.setOnClickListener(view -> {
 			Intent moveToDetailedIntent = new Intent(activity, DetailedActivity.class);
-			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, headlineNews.get(position).getUrlArticle());
-			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, headlineNews.get(position).getNewsType());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, regularNewsList.get(position).getUrlArticle());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, regularNewsList.get(position).getNewsType());
 			activity.startActivity(moveToDetailedIntent);
 		});
 	}
 
 	@Override
 	public int getItemCount() {
-		return headlineNews.size();
+		return regularNewsList.size();
 	}
 
 	class NewsViewHolder extends RecyclerView.ViewHolder {
