@@ -57,5 +57,8 @@ Di sini user dapat melihat judul secara lengkap, tanggal ditulisnya berita, desk
 
 <img src="img/updated.png" width="265" height="500">
 
-Gambar 8 adalah tampilan utama aplikasi setelah update dari tugas saat Ujian Tengah Semester (UTS) di mana terdapat fitur baru yaitu online/offline. Pada Gambar 8 terdapat tombol untuk melakukan penyegaran atau refresh berita untuk menerima berita terbaru.
-Pembaruan ini juga membuat user lebih menghemat data yang digunakan karena data akan diunduh terlebih dahulu kemudian disimpan pada local repository. Tidak hanya itu, pengaksesan berita juga menjadi lebih cepat karena tidak perlu mengunduh data setiap kali berita dipilih.
+Gambar 8 adalah tampilan utama aplikasi setelah update dari tugas saat Ujian Tengah Semester (UTS) di mana terdapat fitur baru yaitu online-offline. Pada Gambar 8 terdapat tombol untuk melakukan penyegaran atau refresh berita untuk menerima berita terbaru.
+
+Pembaruan dengan menggunakan mekanisme offline-online ini membuat user lebih menghemat data yang digunakan karena data akan diunduh terlebih dahulu kemudian disimpan pada database lokal. Tidak hanya itu, pengaksesan berita juga menjadi lebih cepat karena tidak perlu mengunduh data setiap kali berita dipilih.
+
+Pengimplementasian offline-online ini juga sangat membantu user, apabila user tidak memiliki koneksi internet maka user akan tetap dapat mengakses berita yang telah tersimpan di database lokal.
