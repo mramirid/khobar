@@ -1,4 +1,4 @@
-package com.acomp.khobarapp.adapter;
+package com.acomp.khobarapp.ui.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  *
@@ -28,16 +29,17 @@ import java.util.ArrayList;
 public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.NewsViewHolder> {
 
 	private final Activity activity;
-	private ArrayList<NewsEntity> regularNews = new ArrayList<>();
+	private List<NewsEntity> regularNews = new ArrayList<>();
 
 	public RegularNewsAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setRegularNews(ArrayList<NewsEntity> regularNews) {
+	public void setRegularNews(List<NewsEntity> regularNews) {
 		if (regularNews != null) {
 			this.regularNews.clear();
 			this.regularNews.addAll(regularNews);
+			notifyDataSetChanged();
 		}
 	}
 

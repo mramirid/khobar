@@ -1,5 +1,6 @@
 package com.acomp.khobarapp.data.source.local.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -23,6 +24,7 @@ public class NewsEntity {
 	@ColumnInfo(name = "source")
 	private String source;
 
+	@NonNull
 	@PrimaryKey
 	@ColumnInfo(name = "url_article")
 	private String urlArticle;

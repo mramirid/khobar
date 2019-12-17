@@ -1,4 +1,4 @@
-package com.acomp.khobarapp.adapter;
+package com.acomp.khobarapp.ui.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import com.acomp.khobarapp.utils.GlideApp;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
 *
@@ -27,16 +28,17 @@ import java.util.ArrayList;
 public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapter.NewsViewHolder> {
 
 	private final Activity activity;
-	private ArrayList<NewsEntity> headlineNews = new ArrayList<>();
+	private List<NewsEntity> headlineNews = new ArrayList<>();
 
 	public HeadlineNewsAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setHeadlineNews(ArrayList<NewsEntity> headlineNews) {
+	public void setHeadlineNews(List<NewsEntity> headlineNews) {
 		if (headlineNews != null) {
 			this.headlineNews.clear();
 			this.headlineNews.addAll(headlineNews);
+			notifyDataSetChanged();
 		}
 	}
 

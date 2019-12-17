@@ -1,10 +1,12 @@
 package com.acomp.khobarapp.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.acomp.khobarapp.R;
-import com.acomp.khobarapp.adapter.HeadlineNewsAdapter;
-import com.acomp.khobarapp.adapter.RegularNewsAdapter;
+import com.acomp.khobarapp.ui.adapter.HeadlineNewsAdapter;
+import com.acomp.khobarapp.ui.adapter.RegularNewsAdapter;
 import com.acomp.khobarapp.utils.SpacesItemDecoration;
 import com.acomp.khobarapp.viewmodel.ViewModelFactory;
 
 public class HomeActivity extends AppCompatActivity {
 
+	private HomeViewModel homeViewModel;
 	private ProgressBar progressBar;
 
 	private int recyclerViewsLoadedCount = 0;
@@ -43,18 +46,44 @@ public class HomeActivity extends AppCompatActivity {
 
 		HeadlineNewsAdapter headlineNewsAdapter = new HeadlineNewsAdapter(this);
 		RegularNewsAdapter regularNewsAdapter = new RegularNewsAdapter(this);
-		HomeViewModel homeViewModel = obtainViewModel(this);
+		homeViewModel = obtainViewModel(this);
 
-		homeViewModel.getHeadlineNews().observe(this, newsEntities -> {
-			onNewsLoaded();
-			headlineNewsAdapter.setHeadlineNews(newsEntities);
-			headlineNewsAdapter.notifyDataSetChanged();
+		homeViewModel.fetch(false);
+
+		homeViewModel.headlineNewsList.observe(this, listResource -> {
+			if (listResource != null) {
+				switch (listResource.status) {
+					case LOADING:
+						break;
+					case SUCCESS:
+						Log.d(this.getClass().getSimpleName(), "onCreate: HEADLINE DONE");
+						countLoadedOrFailNews();
+						headlineNewsAdapter.setHeadlineNews(listResource.data);
+						break;
+					case ERROR:
+						countLoadedOrFailNews();
+						Toast.makeText(this, listResource.message, Toast.LENGTH_SHORT).show();
+						break;
+				}
+			}
 		});
 
-		homeViewModel.getRegularNews().observe(this, newsEntities -> {
-			onNewsLoaded();
-			regularNewsAdapter.setRegularNews(newsEntities);
-			regularNewsAdapter.notifyDataSetChanged();
+		homeViewModel.regularNewsList.observe(this, listResource -> {
+			if (listResource != null) {
+				switch (listResource.status) {
+					case LOADING:
+						break;
+					case SUCCESS:
+						Log.d(this.getClass().getSimpleName(), "onCreate: REGULAR DONE");
+						countLoadedOrFailNews();
+						regularNewsAdapter.setRegularNews(listResource.data);
+						break;
+					case ERROR:
+						countLoadedOrFailNews();
+						Toast.makeText(this, listResource.message, Toast.LENGTH_SHORT).show();
+						break;
+				}
+			}
 		});
 
 		rvHeadlineNews.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -69,11 +98,11 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 	private HomeViewModel obtainViewModel(AppCompatActivity activity) {
-		ViewModelFactory factory = ViewModelFactory.getInstance();
+		ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
 		return ViewModelProviders.of(activity, factory).get(HomeViewModel.class);
 	}
 
-	private void onNewsLoaded() {
+	private void countLoadedOrFailNews() {
 		// Progress bar akan dihilangkan dari layar apabila kedua recyclerview telah diload
 		if (++recyclerViewsLoadedCount == 2)
 			progressBar.setVisibility(View.GONE);
@@ -87,7 +116,10 @@ public class HomeActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-		// Request ke API
+		if (item.getItemId() == R.id.action_fetch) {
+			recyclerViewsLoadedCount -= 2;
+			homeViewModel.fetch(true);
+		}
 		return super.onOptionsItemSelected(item);
 	}
 }
