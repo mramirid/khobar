@@ -1,9 +1,14 @@
 package com.acomp.khobarapp.data.source.remote;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
 import com.acomp.khobarapp.data.source.remote.response.NewsResponse;
 import com.acomp.khobarapp.utils.JsonHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  *
@@ -25,16 +30,43 @@ public class RemoteRepository {
 		return INSTANCE;
 	}
 
-	public void getHeadlineNews(LoadNewsCallback callback) {
-		jsonHelper.loadHeadlineNews(callback);
+	public LiveData<ApiResponse<List<NewsResponse>>> getHeadlineNewsList() {
+		MutableLiveData<ApiResponse<List<NewsResponse>>> resultHeadlineNewsList = new MutableLiveData<>();
+
+		Observer<List<NewsResponse>> resultHeadlineNewsListObserver = new Observer<List<NewsResponse>>() {
+			@Override
+			public void onChanged(List<NewsResponse> newsResponses) {
+				if (newsResponses.size() != 0)
+					resultHeadlineNewsList.setValue(ApiResponse.success(newsResponses));
+				else
+					resultHeadlineNewsList.setValue(ApiResponse.error("Headline News request failed", newsResponses));
+
+				jsonHelper.loadHeadlineNewsList().removeObserver(this);
+			}
+		};
+
+		jsonHelper.loadHeadlineNewsList().observeForever(resultHeadlineNewsListObserver);
+
+		return resultHeadlineNewsList;
 	}
 
-	public void getRegularNews(LoadNewsCallback callback) {
-		jsonHelper.loadRegularNews(callback);
-	}
+	public LiveData<ApiResponse<List<NewsResponse>>> getRegularNewsList() {
+		MutableLiveData<ApiResponse<List<NewsResponse>>> resultRegularNewsList = new MutableLiveData<>();
 
-	public interface LoadNewsCallback {
-		void onNewsReceived(ArrayList<NewsResponse> newsResponses);
-		void onDataNotAvailable();
+		Observer<List<NewsResponse>> resultRegularNewsListObserver = new Observer<List<NewsResponse>>() {
+			@Override
+			public void onChanged(List<NewsResponse> newsResponses) {
+				if (newsResponses.size() != 0)
+					resultRegularNewsList.setValue(ApiResponse.success(newsResponses));
+				else
+					resultRegularNewsList.setValue(ApiResponse.error("Regular News request failed", newsResponses));
+
+				jsonHelper.loadRegularNewsList().removeObserver(this);
+			}
+		};
+
+		jsonHelper.loadRegularNewsList().observeForever(resultRegularNewsListObserver);
+
+		return resultRegularNewsList;
 	}
 }

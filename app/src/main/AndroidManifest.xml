@@ -4,6 +4,7 @@
     package="com.acomp.khobarapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.splash.SplashScreenActivity">
+        <activity android:name=".ui.splash.SplashScreenActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.detail.DetailedActivity" />
+        <activity
+            android:name=".ui.detail.DetailedActivity"
+            android:theme="@style/DetailActivityTheme"/>
         <activity android:name=".ui.home.HomeActivity"/>
     </application>
 
