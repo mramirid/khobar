@@ -29,18 +29,23 @@ import java.util.List;
 public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.NewsViewHolder> {
 
 	private final Activity activity;
-	private List<NewsEntity> regularNews = new ArrayList<>();
+	private List<NewsEntity> regularNewsList = new ArrayList<>();
 
 	public RegularNewsAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setRegularNews(List<NewsEntity> regularNews) {
-		if (regularNews != null) {
-			this.regularNews.clear();
-			this.regularNews.addAll(regularNews);
+	public void setRegularNewsList(List<NewsEntity> regularNewsList) {
+		if (regularNewsList != null) {
+			this.regularNewsList.clear();
+			this.regularNewsList.addAll(regularNewsList);
 			notifyDataSetChanged();
 		}
+	}
+
+	public void clear() {
+		this.regularNewsList.clear();
+		notifyDataSetChanged();
 	}
 
 	@NonNull
@@ -52,10 +57,10 @@ public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.
 
 	@Override
 	public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-		holder.tvTitle.setText(regularNews.get(position).getTitle());
-		holder.tvSource.setText(regularNews.get(position).getSource());
+		holder.tvTitle.setText(regularNewsList.get(position).getTitle());
+		holder.tvSource.setText(regularNewsList.get(position).getSource());
 		GlideApp.with(holder.itemView.getContext())
-				.load(regularNews.get(position).getUrlToImage())
+				.load(regularNewsList.get(position).getUrlToImage())
 				.apply(RequestOptions.placeholderOf(R.drawable.ic_broken_image_black_24dp).error(R.drawable.ic_broken_image_black_24dp))
 				.apply(new RequestOptions().transform(new RoundedCorners(40)))
 				.into(holder.imgPoster);
@@ -63,15 +68,15 @@ public class RegularNewsAdapter extends RecyclerView.Adapter<RegularNewsAdapter.
 		// Click listener
 		holder.itemView.setOnClickListener(view -> {
 			Intent moveToDetailedIntent = new Intent(activity, DetailedActivity.class);
-			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, regularNews.get(position).getUrlArticle());
-			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, regularNews.get(position).getNewsType());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, regularNewsList.get(position).getUrlArticle());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, regularNewsList.get(position).getNewsType());
 			activity.startActivity(moveToDetailedIntent);
 		});
 	}
 
 	@Override
 	public int getItemCount() {
-		return regularNews.size();
+		return regularNewsList.size();
 	}
 
 	class NewsViewHolder extends RecyclerView.ViewHolder {

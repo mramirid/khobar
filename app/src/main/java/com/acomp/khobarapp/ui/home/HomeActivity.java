@@ -2,12 +2,15 @@ package com.acomp.khobarapp.ui.home;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,33 +25,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class HomeActivity extends AppCompatActivity {
 
+	private HeadlineNewsAdapter headlineNewsAdapter;
+	private RegularNewsAdapter regularNewsAdapter;
 	private HomeViewModel homeViewModel;
-	private ProgressBar progressBar;
 
+	private ProgressBar progressBar;
 	private int recyclerViewsLoadedCount = 0;
 
 	private boolean doubleBackPressed = false;
-
-	@Override
-	public void onBackPressed() {
-
-		if(doubleBackPressed) {
-			super.onBackPressed();
-			return;
-		} else {
-			doubleBackPressed = true;
-			final ConstraintLayout constraintLayout = findViewById(R.id.acivity_home);
-			Snackbar.make(constraintLayout, getString(R.string.tekan_lagi), Snackbar.LENGTH_SHORT).show();
-
-			new Handler().postDelayed(new Runnable() {
-
-				@Override
-				public void run() {
-					doubleBackPressed = false;
-				}
-			}, 2000);
-		}
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
 
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-		
+
 		if (getSupportActionBar() != null)
 			getSupportActionBar().setTitle("");
 
@@ -66,8 +50,8 @@ public class HomeActivity extends AppCompatActivity {
 		progressBar = findViewById(R.id.progress_bar);
 		progressBar.setVisibility(View.VISIBLE);
 
-		HeadlineNewsAdapter headlineNewsAdapter = new HeadlineNewsAdapter(this);
-		RegularNewsAdapter regularNewsAdapter = new RegularNewsAdapter(this);
+		headlineNewsAdapter = new HeadlineNewsAdapter(this);
+		regularNewsAdapter = new RegularNewsAdapter(this);
 		homeViewModel = obtainViewModel(this);
 
 		homeViewModel.fetch(false);
@@ -78,9 +62,8 @@ public class HomeActivity extends AppCompatActivity {
 					case LOADING:
 						break;
 					case SUCCESS:
-						Log.d(this.getClass().getSimpleName(), "onCreate: HEADLINE DONE");
 						countLoadedOrFailNews();
-						headlineNewsAdapter.setHeadlineNews(listResource.data);
+						headlineNewsAdapter.setHeadlineNewsList(listResource.data);
 						break;
 					case ERROR:
 						countLoadedOrFailNews();
@@ -96,9 +79,8 @@ public class HomeActivity extends AppCompatActivity {
 					case LOADING:
 						break;
 					case SUCCESS:
-						Log.d(this.getClass().getSimpleName(), "onCreate: REGULAR DONE");
 						countLoadedOrFailNews();
-						regularNewsAdapter.setRegularNews(listResource.data);
+						regularNewsAdapter.setRegularNewsList(listResource.data);
 						break;
 					case ERROR:
 						countLoadedOrFailNews();
@@ -131,6 +113,20 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 	@Override
+	public void onBackPressed() {
+
+		if (doubleBackPressed) {
+			super.onBackPressed();
+		} else {
+			doubleBackPressed = true;
+			final ConstraintLayout constraintLayout = findViewById(R.id.acivity_home);
+			Snackbar.make(constraintLayout, getString(R.string.tekan_lagi), Snackbar.LENGTH_SHORT).show();
+
+			new Handler().postDelayed(() -> doubleBackPressed = false, 2000);
+		}
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return super.onCreateOptionsMenu(menu);
@@ -140,6 +136,9 @@ public class HomeActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		if (item.getItemId() == R.id.action_fetch) {
 			recyclerViewsLoadedCount -= 2;
+			progressBar.setVisibility(View.VISIBLE);
+			headlineNewsAdapter.clear();
+			regularNewsAdapter.clear();
 			homeViewModel.fetch(true);
 		}
 		return super.onOptionsItemSelected(item);

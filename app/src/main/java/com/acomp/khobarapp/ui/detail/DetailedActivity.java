@@ -43,7 +43,7 @@ public class DetailedActivity extends AppCompatActivity {
 
 		DetailedViewModel detailedViewModel = obtainViewModel(this);
 
-		String newsUrl = null, newsType = null;
+		String newsUrl = null, newsType;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			newsUrl = extras.getString(EXTRA_NEWS_URL);
@@ -52,7 +52,6 @@ public class DetailedActivity extends AppCompatActivity {
 			if (newsUrl != null && newsType != null) {
 				toolbar.setTitle(newsType);
 				detailedViewModel.setNewsUrl(newsUrl);
-				detailedViewModel.setNewsType(newsType);
 			}
 		}
 

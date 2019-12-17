@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer;
 import com.acomp.khobarapp.data.source.remote.response.NewsResponse;
 import com.acomp.khobarapp.utils.JsonHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*

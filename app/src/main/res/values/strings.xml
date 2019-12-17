@@ -8,4 +8,5 @@
     <string name="description">Description</string>
     <string name="content">Content</string>
     <string name="tekan_lagi">Tekan lagi untuk Keluar</string>
+    <string name="refresh_news">Refresh</string>
 </resources>

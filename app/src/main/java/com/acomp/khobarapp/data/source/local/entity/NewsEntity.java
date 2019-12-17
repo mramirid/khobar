@@ -38,7 +38,8 @@ public class NewsEntity {
 	@ColumnInfo(name = "content")
 	private String content;
 
-	public NewsEntity(String newsType, String title, String description, String source, String urlArticle, String urlToImage, String timeStamp, String content) {
+	public NewsEntity(String newsType, String title, String description, String source,
+					  @NonNull String urlArticle, String urlToImage, String timeStamp, String content) {
 		this.newsType = newsType;
 		this.title = title;
 		this.description = description;
@@ -69,6 +70,7 @@ public class NewsEntity {
 		this.source = source;
 	}
 
+	@NonNull
 	public String getUrlArticle() {
 		return urlArticle;
 	}

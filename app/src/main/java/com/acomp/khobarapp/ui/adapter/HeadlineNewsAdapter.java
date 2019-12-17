@@ -28,18 +28,23 @@ import java.util.List;
 public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapter.NewsViewHolder> {
 
 	private final Activity activity;
-	private List<NewsEntity> headlineNews = new ArrayList<>();
+	private List<NewsEntity> headlineNewsList = new ArrayList<>();
 
 	public HeadlineNewsAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setHeadlineNews(List<NewsEntity> headlineNews) {
-		if (headlineNews != null) {
-			this.headlineNews.clear();
-			this.headlineNews.addAll(headlineNews);
+	public void setHeadlineNewsList(List<NewsEntity> headlineNewsList) {
+		if (headlineNewsList != null) {
+			this.headlineNewsList.clear();
+			this.headlineNewsList.addAll(headlineNewsList);
 			notifyDataSetChanged();
 		}
+	}
+
+	public void clear() {
+		this.headlineNewsList.clear();
+		notifyDataSetChanged();
 	}
 
 	@NonNull
@@ -51,25 +56,25 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
 
 	@Override
 	public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-		holder.tvTitle.setText(headlineNews.get(position).getTitle());
-		holder.tvSource.setText(headlineNews.get(position).getSource());
+		holder.tvTitle.setText(headlineNewsList.get(position).getTitle());
+		holder.tvSource.setText(headlineNewsList.get(position).getSource());
 		GlideApp.with(holder.itemView.getContext())
-				.load(headlineNews.get(position).getUrlToImage())
+				.load(headlineNewsList.get(position).getUrlToImage())
 				.apply(RequestOptions.placeholderOf(R.drawable.ic_broken_image_black_24dp).error(R.drawable.ic_broken_image_black_24dp))
 				.into(holder.imgPoster);
 
 		// Click listener
 		holder.itemView.setOnClickListener(view -> {
 			Intent moveToDetailedIntent = new Intent(activity, DetailedActivity.class);
-			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, headlineNews.get(position).getUrlArticle());
-			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, headlineNews.get(position).getNewsType());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_URL, headlineNewsList.get(position).getUrlArticle());
+			moveToDetailedIntent.putExtra(DetailedActivity.EXTRA_NEWS_TYPE, headlineNewsList.get(position).getNewsType());
 			activity.startActivity(moveToDetailedIntent);
 		});
 	}
 
 	@Override
 	public int getItemCount() {
-		return headlineNews.size();
+		return headlineNewsList.size();
 	}
 
 	class NewsViewHolder extends RecyclerView.ViewHolder {

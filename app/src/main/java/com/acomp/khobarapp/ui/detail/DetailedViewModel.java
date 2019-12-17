@@ -12,7 +12,6 @@ import com.acomp.khobarapp.vo.Resource;
 public class DetailedViewModel extends ViewModel {
 
 	private MutableLiveData<String> newsUrl = new MutableLiveData<>();
-	private String newsType;
 
 	private NewsRepository newsRepository;
 
@@ -26,13 +25,5 @@ public class DetailedViewModel extends ViewModel {
 
 	void setNewsUrl(String newsUrl) {
 		this.newsUrl.setValue(newsUrl);
-	}
-
-	void setNewsType(String newsType) {
-		this.newsType = newsType;
-	}
-
-	public String getNewsType() {
-		return newsType;
 	}
 }
