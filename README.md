@@ -50,3 +50,12 @@ Setelah user memutuskan untuk memilih dan menekan pada salah satu jenis berita, 
 <img src="img/regular_news_description_2.jpeg" width="265" height="500">
 
 Di sini user dapat melihat judul secara lengkap, tanggal ditulisnya berita, deskripsi dan konten dari berita. Di paling bawah halaman, user akan menemukan sebuah tombol “view article” yang apabila ditekan akan mengarahkan user pada halaman berita (website), tujuannya agar user dapat membaca isi berita secara lengkap.
+
+##### UPDATE PROJECT
+
+##### 8. Tampilan Halaman Utama Aplikasi Setelah Update
+
+<img src="img/update.png" width="265" height="500">
+
+Gambar 8 adalah tampilan utama aplikasi setelah update dari tugas saat Ujian Tengah Semester (UTS) di mana terdapat fitur baru yaitu online/offline. Pada Gambar 8 terdapat tombol untuk melakukan penyegaran atau refresh berita untuk menerima berita terbaru.
+Pembaruan ini juga membuat user lebih menghemat data yang digunakan karena data akan diunduh terlebih dahulu kemudian disimpan pada local repository. Tidak hanya itu, pengaksesan berita juga menjadi lebih cepat karena tidak perlu mengunduh data setiap kali berita dipilih.
